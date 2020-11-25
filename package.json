@@ -1,15 +1,18 @@
 {
-  "name": "Bookmark-App",
+  "name": "bookmark-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "cuid": "^2.1.8",
     "jquery": "^3.5.1"
   },
   "devDependencies": {

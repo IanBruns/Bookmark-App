@@ -1,0 +1,46 @@
+h1{
+    text-align: center;
+}
+
+h4{
+  background-color: lightgray;
+}
+
+.checked {
+  color: orange;
+}
+
+.bookmark-storage{
+  border: 2px solid black;
+}
+
+.page-condensed{
+  display: flex;
+  flex-direction: row;
+}
+
+.bookmark-container{
+    border: 2px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.flex-row{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: lightgray;
+}
+
+.add-and-filter{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@media all and (min-width: 800px){
+  .bookmark-container{
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+}
