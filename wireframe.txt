@@ -1,0 +1,74 @@
+<body>
+    <h1>Bookmarks</h1>
+    <div class="bookmark-container">
+        <div class="add-and-filter">
+            <button class="add">Add</button>
+            <div class="filter-dropdown">
+                <button class="filter">filter (but hover)</button>
+            </div>
+        </div>
+        <div class="bookmark-storage">
+            <div class="page-condensed">
+                <h4>Name</h4>
+                <div class="rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div>
+        </div>
+        <div class="bookmark-storage">
+            <div class="page-expanded">
+                <div class="flex-row">
+                    <h4>Name</h4>
+                    <div class="rating">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <i class="fa fa-trash"></i>
+                </div>
+                <button>Visit me</button>
+                <div class="disc-box">
+                    <p>"Whether we wanted it or not, we've stepped into a war with the Cabal on Mars. So let's get to
+                        taking out their command,
+                        one by one. Valus Ta'aurc. From what I can gather he commands the Siege Dancers from an Imperial
+                        Land Tank outside of
+                        Rubicon. He's well protected, but with the right team, we can punch through those defenses, take
+                        this beast out, and
+                        break their grip on Freehold."</p>
+                </div>
+            </div>
+        </div>
+        <div class="bookmark-storage">
+            <div class="page-condensed">
+                <h4>Name</h4>
+                <div class="rating">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bookmark-container">
+        <form>
+            <label for='url'>Add New Bookmark*: </label><br />
+            <input type='text' name='url' required /><br />
+            <label for='name'>Link Name*:</label><br />
+            <input type='text' name='email' required /><br />
+            <label for='description'>Description*:</label><br />
+            <input type='text' name='description' required /><br />
+            <label for='email'>Rating*:</label><br />
+            <input type='number' name='description' required /><br />
+
+            <input type='button' name='Submit' value='Submit' />
+        </form>
+    </div>
+</body>

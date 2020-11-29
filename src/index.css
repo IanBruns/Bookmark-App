@@ -14,9 +14,15 @@ h4{
   border: 2px solid black;
 }
 
-.page-condensed{
+.disc-box{
+  border: 2px solid black;
+  margin: 10px;
+}
+
+.page{
   display: flex;
   flex-direction: row;
+  border: 1px solid black;
 }
 
 .bookmark-container{
