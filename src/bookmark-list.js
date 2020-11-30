@@ -7,31 +7,31 @@ import api from './api';
 const generateItemElement = function (item) {
     if (item.expanded === false) {
         return ` <div data-id="${item.id}" class="page condensed">
+                <div class="rating align">
                 <h4>${item.title}</h4>
-                <div class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
+                <p class="ofFive">Rating ${item.rating}/5</p>
                 </div>
-            </div>`;
+                </div>`;
     } else {
         return `<div data-id="${item.id}" class="page">
-                <h4>${item.title}</h4>
                 <div class="rating">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </div></br>
-                <button>Visit me</button>
-                <div class="disc-box">
-                    <p>${item.desc}</p>
-                </div>
+                <div class ="purple">
                 <i class="fa fa-trash delete"></i>
-            </div>`
+                </div>
+                <div class="rating align">
+                <h4>${item.title}</h4>
+                <p class="ofFive">Rating ${item.rating}/5</p>
+                </div>
+                </div>
+                    <div class="visit-desc">
+                    <div class='center'>
+                    <a class="button-style" href="${item.url}" target="_blank">Visit!</a>
+                    </div>
+                    <div class="disc-box">
+                    <p>${item.desc}</p>
+                    </div>
+                    </div>
+                </div>`
     }
 }
 
@@ -46,9 +46,13 @@ const reviewAddButtonHtml = function () {
             <label for='email'>Rating</label><br />
             <input type='number' id='rating' name='rating' min='1' max='5'/><br />
 
-            <input type='submit' class="new-bookmark" value='Submit' />
-            <button class='cancel'>Cancel</button>
-        </form>`
+            <input type='submit' class="submit new-bookmark button-style" value='Submit' />
+            </form>
+            <div class="visit-desc">
+            <div class='center'>
+            <button class='cancel button-style'>Cancel</button>
+            </div>
+            <div>`
 }
 
 // EVENT SUPPORT *******************************************************
@@ -87,8 +91,7 @@ const handleBookmarkSubmit = function () {
                 render();
             })
             .catch((err) => {
-                // store.setError(err.message);
-                // renderError();
+                alert(err.message);
             });
     });
 }
@@ -107,7 +110,7 @@ const handleDeleteClicked = function () {
                 render();
             })
             .catch(err => {
-                // store.setError(err.message);
+                alert(err.message);
             })
     });
 }
@@ -116,7 +119,7 @@ const handleCancelClicked = function () {
     //THis is so the user can back out of making hte
     //new bookmark for whatever reason back to the
     //starting page
-    $('.cancel').on('click', e => {
+    $('.bookmark-storage').on('click', '.cancel', e => {
         store.changeAddNew();
         render();
     });
@@ -142,13 +145,25 @@ const handleCondensedClicked = function () {
     });
 }
 
+const handleFilterClicked = function () {
+    //When this is clicked, filter the array by the rating
+    $('.cancel').on('click', e => {
+        let filter = $(e.currentTarget).html();
+        store.filterBookmarks(filter);
+        render();
+    })
+}
+
 const render = function () {
     let htmlString = '';
 
     if (store.adding === true) {
         htmlString = reviewAddButtonHtml()
     } else {
-        let bookmarks = store.bookmarks;
+        let bookmarks = store.bookmarks.filter(currentItem => {
+            return currentItem.rating >= store.filter;
+        });
+
         htmlString = createHtmlString(bookmarks);
     }
 
@@ -161,6 +176,7 @@ const bindEventListeners = function () {
     handleCondensedClicked();
     handleDeleteClicked();
     handleBookmarkSubmit();
+    handleFilterClicked();
 }
 
 export default {

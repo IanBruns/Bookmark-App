@@ -15,6 +15,10 @@ const setError = function (err) {
     this.error = err;
 }
 
+const filterBookmarks = function (target) {
+    this.filter = target;
+}
+
 const createItem = function (bookmark) {
     bookmark.expanded = false;
     bookmarks.push(bookmark);
@@ -38,6 +42,7 @@ export default {
     changeAddNew,
     removeItem,
     setError,
+    filterBookmarks,
     createItem,
     findByID,
     toggleExpanded,
