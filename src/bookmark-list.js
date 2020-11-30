@@ -31,7 +31,7 @@ const generateItemElement = function (item) {
                     <p>${item.desc}</p>
                     </div>
                     </div>
-                </div>`
+                </div>`;
     }
 }
 
