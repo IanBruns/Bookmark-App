@@ -39,7 +39,7 @@ const reviewAddButtonHtml = function () {
     return `<form class="bookmark-submit">
             <label for='url'>What do you call this link?</label><br />
             <input type='text' id='title' name='title' /><br />
-            <label for='name'>Add the link here! (start with https://</label><br />
+            <label for='name'>Add the link here! (start with https://)</label><br />
             <input type='text' id='url' name='url' /><br />
             <label for='desc'>Description</label><br />
             <input type='text' id='desc' name='desc' /><br />

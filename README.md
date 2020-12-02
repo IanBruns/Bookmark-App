@@ -1,8 +1,11 @@
 # Bookmark-App
 
-api.js -> all API interactions
-bookmark.js -> HTML template generation and event listeners
-store.js -> The book mark "database" object
-index.js -> not much just used as a main to tie everything together
+Users will have the ability to add websites to this application using the add button and filling in some required values
+-Name (will return error if blank)
+-URL (will return error if blank)
+-Description
+-Rating
 
-Current Project: then css
+When the App starts/when a new bookmark is loaded, users will have the ability to view all bookmarks in a condensed view.  Clicking on the condensed boxes will then show a larger tab for that item with a visit button and details
+
+Users can also filter out all bookmarks below a curtain rating with the filter buttons
