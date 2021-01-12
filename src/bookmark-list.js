@@ -4,6 +4,27 @@ import api from './api';
 
 // HTML Strings ****************************************************************
 
+const generateTopElement = function () {
+    return `<h1>Bookmarks</h1>
+        <div class="bookmark-container">
+            <div class="add-and-filter">
+                <button class="add button-style">Add</button>
+                <div class="dropdown">
+                    <button class="filter button-style">Filter</button>
+                    <div class="dropdown-content">
+                        <p class="number-filter button-style">1</p>
+                        <p class="number-filter button-style">2</p>
+                        <p class="number-filter button-style">3</p>
+                        <p class="number-filter button-style">4</p>
+                        <p class="number-filter button-style">5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bookmark-storage">
+            </div>
+        </div>`
+}
+
 const generateItemElement = function (item) {
     if (item.expanded === false) {
         return ` <div data-id="${item.id}" class="page condensed">
@@ -46,7 +67,7 @@ const reviewAddButtonHtml = function () {
             <label for='email'>Rating</label><br />
             <input type='number' id='rating' name='rating' min='1' max='5'/><br />
 
-            <input type='submit' class="submit new-bookmark button-style" value='Submit' />
+            <button type='submit' class="submit new-bookmark button-style">Submit</button>
             </form>
             <div class="visit-desc">
             <div class='center'>
@@ -76,13 +97,13 @@ const createHtmlString = function (bookmarks) {
 const handleBookmarkSubmit = function () {
     //When the user clicks submit, grab all the values to create an object
     //that will go into the store module
-    $('.bookmark-container').on('submit', '.bookmark-submit', e => {
+    $('main').on('submit', '.bookmark-submit', e => {
         e.preventDefault();
 
-        let title = $(e.currentTarget).closest('.bookmark-submit').find('#title').val();
-        let url = $(e.currentTarget).closest('.bookmark-submit').find('#url').val();
-        let desc = $(e.currentTarget).closest('.bookmark-submit').find('#desc').val();
-        let rating = $(e.currentTarget).closest('.bookmark-submit').find('#rating').val();
+        let title = $(e.currentTarget).find('#title').val();
+        let url = $(e.currentTarget).find('#url').val();
+        let desc = $(e.currentTarget).find('#desc').val();
+        let rating = $(e.currentTarget).find('#rating').val();
 
         api.createBookmark(title, url, desc, rating)
             .then(newBookmark => {
@@ -100,7 +121,7 @@ const handleDeleteClicked = function () {
     //When the user clicks the trashcan, we need to remove the item
     //then render
 
-    $('.bookmark-storage').on('click', '.delete', e => {
+    $('main').on('click', '.delete', e => {
         let target = $(e.currentTarget).closest('.page')
         let selectedBookmarkID = extractID(target);
 
@@ -119,7 +140,7 @@ const handleCancelClicked = function () {
     //THis is so the user can back out of making hte
     //new bookmark for whatever reason back to the
     //starting page
-    $('.bookmark-storage').on('click', '.cancel', e => {
+    $('main').on('click', '.cancel', e => {
         store.changeAddNew();
         render();
     });
@@ -128,7 +149,7 @@ const handleCancelClicked = function () {
 const handleAddClicked = function () {
     //if someone clicks on this add, load the page that will allow
     //users to add a new page
-    $('.add').on('click', e => {
+    $('main').on('click', '.add', e => {
         store.changeAddNew();
         render();
     });
@@ -137,7 +158,7 @@ const handleAddClicked = function () {
 const handleCondensedClicked = function () {
     //If someone clicks in the box of bookmarks then change the style of the div
     //to and expanded version that then details more information
-    $('.bookmark-storage').on('click', '.condensed', e => {
+    $('main').on('click', '.condensed', e => {
         let selectedBookmarkID = extractID(e.currentTarget);
         store.toggleExpanded(selectedBookmarkID);
 
@@ -147,7 +168,7 @@ const handleCondensedClicked = function () {
 
 const handleFilterClicked = function () {
     //When this is clicked, filter the array by the rating
-    $('.cancel').on('click', e => {
+    $('main').on('click', '.number-filter', e => {
         let filter = $(e.currentTarget).html();
         store.filterBookmarks(filter);
         render();
@@ -155,7 +176,8 @@ const handleFilterClicked = function () {
 }
 
 const render = function () {
-    let htmlString = '';
+    let htmlString = ''
+    let topString = generateTopElement();
 
     if (store.adding === true) {
         htmlString = reviewAddButtonHtml()
@@ -167,6 +189,7 @@ const render = function () {
         htmlString = createHtmlString(bookmarks);
     }
 
+    $('main').html(topString);
     $('.bookmark-storage').html(htmlString);
 }
 
